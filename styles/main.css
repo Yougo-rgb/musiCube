@@ -1,4 +1,8 @@
-/* RESET */
+:root {
+  --bg-color: #f3ce7c;
+  --bg-color-element: #f3dca9;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,19 +10,19 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* BLOQUE LE SCROLL */
 html, body {
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  font-size: clamp(18px, 1.4vw, 22px);
 }
 
 body {
-  background-color: #e9e9e9;
+  background-color: var(--bg-color);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 20px;
+  padding: 2.2rem 1.5rem;
   justify-content: space-between;
 }
 
@@ -26,20 +30,39 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 1.2rem;
   width: 100%;
-  max-width: 800px;
+  max-width: 60rem;
   margin: 0 auto;
 }
 
+#title {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  align-self: flex-start;
+  color: black;
+  text-decoration: none;
+  text-shadow: 2px 2px 4px white;
+  cursor: pointer;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+#title:hover {
+  text-shadow: 3px 3px 6px white;
+  color: rgb(68, 68, 68);
+}
+
 #connect {
-    width: 140px;
+  width: 9rem;
   align-self: center;
 }
 
 #header .select-row {
   display: flex;
-  gap: 20px;
+  gap: 1.5rem;
   align-items: center;
 }
 
@@ -53,71 +76,134 @@ body {
 }
 
 button, select {
-  padding: 6px 12px;
-  border: 2px solid black;
-  background-color: #dcdcdc;
-  font-size: 14px;
+  padding: 0.7rem 1.3rem;
+  /* border: 1px solid black; */
+  background-color: #deab6e;
+  font-size: 1rem;
   cursor: pointer;
 }
 
+button {
+  border-radius: 10px;
+}
+
+select {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
 button:hover, select:hover {
-  background-color: #cfcfcf;
+  background-color: #d69b52;
 }
 
 #info {
   width: 100%;
-  max-width: 800px;
+  max-width: 60rem;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 1.2rem;
   align-items: center;
+  color:rgb(70, 70, 70);
 }
 
 #status,
 #moves,
 #notes {
   width: 100%;
-  height: 45px;
-  border: 3px solid black;
-  background-color: #dcdcdc;
+  border: 1px black dotted; 
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: var(--bg-color-element);
   display: flex;
   align-items: center;
-  padding: 8px 10px;
-  font-size: 15px;
-  min-height: 45px;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  min-height: 3.5rem;
   word-wrap: break-word;
+  overflow-wrap: break-word;
+  transition: all 0.3s ease;
+}
+
+#status a {
+  color: rgb(57, 80, 143);
+  cursor: pointer;
 }
 
 #cube {
-  width: 160px;
-  height: 160px;
-  border: 64x solid black;
-  background-color: #dcdcdc;
+  background-color: var(--bg-color-element);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  font-size: 1.6rem;
 }
 
 #footer {
-  padding: 8px 20px;
-  border: 3px solid black;
-  background-color: #dcdcdc;
+  padding: 0.6rem 1.5rem;
+  /* border: 3px solid black; 
+  background-color: #dcdcdc;*/
   font-weight: bold;
-  font-size: 14px;
+  font-size: 0.95rem;
+}
+
+#footer a {
+  color: rgb(33, 29, 29);
+  text-decoration: none;
+  text-shadow: 2px 2px 4px white;
+  cursor: pointer;
+}
+
+#footer a:hover {
+  color: rgb(74, 74, 74);
+  text-decoration: none;
 }
 
 .select-row {
-  width: 100%;
-  max-width: 800px;
-
+  
+  max-width: 60rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 15px;
+  gap: 1.2rem;
+  margin: 1.5rem 0.3rem;
 }
 
 .select-row > div {
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.copyable {
+  padding: 0.8rem 1rem;
+  margin: 0.4rem 0;
+  background-color: #f0f0f0;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.copyable:hover {
+  background-color: #d69b52;
+}
+
+.copyable::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: --1.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  color: white;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.copyable:hover::after {
+  opacity: 1;
 }

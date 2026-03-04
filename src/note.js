@@ -94,8 +94,3 @@ export function getNoteForMove(move, key, scale) {
 
     return notes[index % notes.length];
 }
-
-export function getNotes(key, scale) {
-  if (!scales[key]) return null;
-  return scales[key][scale] || null;
-}
