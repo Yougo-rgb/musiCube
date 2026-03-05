@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yougo-rgb.github.io/musiCube/sitemap.xml
